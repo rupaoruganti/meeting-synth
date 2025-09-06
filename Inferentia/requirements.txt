@@ -1,0 +1,10 @@
+# requirements.txt
+fastapi
+uvicorn[standard]
+python-multipart
+transformers
+torch
+torchaudio
+accelerate
+faster-whisper
+datefinder
