@@ -1,0 +1,27 @@
+{
+  "summary": [
+    "- First draft of promotional email sequence is nearly complete.",
+    "- Social media calendar revised with campaign themes and posts scheduled for the next two weeks.",
+    "- Design team delivered a draft infographic requiring adjustments.",
+    "- Press release draft ready, pending input on product positioning.",
+    "- Two QA issues flagged in beta feature; John to coordinate fixes with engineering by Friday.",
+    "- Last quarter's campaign analytics showed strong LinkedIn ad performance, weaker Instagram results; budget reallocation to LinkedIn agreed upon.",
+    "- Sales playbook is halfway done, pending product details from John.",
+    "- Webinar preparations underway; registration form to be tested by Monday."
+  ],
+  "open_tasks": [
+    "- Finalize and circulate promotional email sequence.",
+    "- Revise infographic.",
+    "- Provide input on product positioning for press release.",
+    "- Fix two QA issues in beta feature by Friday.",
+    "- Provide product details to Sam for sales playbook finalization.",
+    "- Test webinar registration form by Monday."
+  ],
+  "completed_tasks": [
+    "- Revised social media calendar.",
+    "- Delivered draft infographic.",
+    "- Prepared press release draft.",
+    "- Shared QA findings.",
+    "- Presented last quarter's campaign analytics."
+  ]
+}
