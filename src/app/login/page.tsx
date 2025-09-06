@@ -7,16 +7,36 @@ export default function LoginPage() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+
+   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
-    // You can do real authentication here (API call, validation, etc.)
-    alert(`Welcome ${name}! Logged in with ${email}`);
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    // Redirect to scheduler page
-    router.push("/scheduler");
+      const data = await res.json();
+      setLoading(false);
+
+      if (!data.success) {
+        alert(data.message);
+        return;
+      }
+
+      alert(data.message); // Welcome message
+      router.push("/scheduler"); // redirect
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+      alert("Something went wrong. Try again.");
+    }
   };
 
   return (

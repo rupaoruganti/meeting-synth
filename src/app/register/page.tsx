@@ -80,7 +80,7 @@ export default function RegisterPage() {
           >
             <option value="">Select Role</option>
             <option>Vice President</option>
-            <option>Team Lead</option>
+            <option>Project Lead</option>
             <option>Teammate</option>
           </select>
 

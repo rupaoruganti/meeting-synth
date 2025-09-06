@@ -3,6 +3,8 @@
 import React, { useEffect, useMemo, useState, FormEvent } from "react";
 import { ReactElement } from "react";
 
+import Link from "next/link";
+
 // ---- Utilities ----
 const pad = (n: number): string => String(n).padStart(2, "0");
 
@@ -542,38 +544,43 @@ const TasksPanel = () => (
         </div>
       )}
       {meetings
-        .filter(m => new Date(`${m.date}T${m.time}`) < new Date())
-        .slice()
-        .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time)) // recent first
-        .map((m, index) => (
-          <div
-            key={m.id}
-            className="border border-gray-100 rounded-2xl p-4 hover:shadow-md transition-all duration-200 group bg-gray-50"
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <div className="font-semibold text-gray-500 group-hover:text-gray-700 transition-colors">
-                  {m.title}
-                </div>
-                <div className="text-sm text-gray-400 mt-1">
-                  {m.date} • {m.time}
-                </div>
-              </div>
-              <button
-                onClick={() => handleDelete(m.id)}
-                className="text-sm px-3 py-1 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 active:scale-95 transition-all duration-200"
-              >
-                Delete
-              </button>
+  .filter(m => new Date(`${m.date}T${m.time}`) < new Date())
+  .slice()
+  .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time))
+  .map((m, index) => (
+    <Link key={m.id} href={`/meeting/${m.id}`}>
+      <div
+        className="border border-gray-100 rounded-2xl p-4 hover:shadow-md transition-all duration-200 group bg-gray-50 cursor-pointer"
+        style={{ animationDelay: `${index * 100}ms` }}
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <div className="font-semibold text-gray-500 group-hover:text-gray-700 transition-colors">
+              {m.title}
             </div>
-            {m.participants?.length > 0 && (
-              <div className="mt-3 pt-3 border-t border-gray-100 text-xs text-gray-500">
-                <span className="font-medium">Participants:</span> {m.participants.join(", ")}
-              </div>
-            )}
+            <div className="text-sm text-gray-400 mt-1">
+              {m.date} • {m.time}
+            </div>
           </div>
-        ))}
+          <button
+            onClick={(e) => {
+              e.preventDefault(); // stop Link navigation
+              handleDelete(m.id);
+            }}
+            className="text-sm px-3 py-1 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 active:scale-95 transition-all duration-200"
+          >
+            Delete
+          </button>
+        </div>
+        {m.participants?.length > 0 && (
+          <div className="mt-3 pt-3 border-t border-gray-100 text-xs text-gray-500">
+            <span className="font-medium">Participants:</span> {m.participants.join(", ")}
+          </div>
+        )}
+      </div>
+    </Link>
+  ))}
+
     </div>
 
         </div>
